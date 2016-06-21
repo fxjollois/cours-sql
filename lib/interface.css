@@ -6,6 +6,10 @@ body, h1, table {
 /* en-tête */
 header {
     height: 100px;
+    padding-left: 50px;
+}
+h1, h2 {
+    display: inline-block;
 }
 
 /* pied de page */
