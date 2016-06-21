@@ -1,0 +1,74 @@
+body, h1, table {
+    margin: 0;
+    padding: 0;
+}
+
+/* en-tête */
+header {
+    height: 100px;
+}
+
+/* pied de page */
+footer {
+    height: 50px;
+}
+
+/* partie interface */
+#interface {
+    background-color: #ddd;
+}
+
+/* paramètre de l'interface */
+#information, #droite {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+#contenu {
+    display: none;
+    background-color: coral;
+    position: fixed;
+    top: 100px;
+    bottom: 50px;
+    left: 100px;
+    right: 100px;
+}
+
+#requete, #resultat {
+    height: 50%;
+    padding: 10px;
+}
+
+#requetesql {
+    border: 0;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    resize: none;
+}
+
+#lancer, #tables {
+    float: right;
+    width: 80px;
+    margin-right: 10px;
+    text-align: center;
+    visibility: hidden;
+}
+#tables {
+    position: absolute;
+    top: 140px;
+    right: 10px;
+}
+
+#resultat {
+    overflow: scroll;
+}
+
+#tablesql {
+    background-color: aquamarine;
+}
+
+table {
+    white-space: pre-wrap;
+}
