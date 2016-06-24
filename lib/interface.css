@@ -1,3 +1,8 @@
+body {
+    font-family: monospace;
+    font-size: 12pt;
+}
+
 body, h1, table {
     margin: 0;
     padding: 0;
@@ -15,6 +20,25 @@ h1, h2 {
 /* pied de page */
 footer {
     height: 50px;
+    text-align: center;
+}
+
+/* Affichage des boutons */
+button {
+    min-width: 80px;
+    height: 40px;
+    border: solid 1px black;
+    background-color: slategray;
+    color: white;
+    font-size: 1.5em;
+    display: block;
+    margin: 10px auto;
+}
+button:hover {
+    background-color: steelblue;
+}
+button.active {
+    background-color: seagreen;
 }
 
 /* partie interface */
@@ -25,13 +49,17 @@ footer {
 /* paramètre de l'interface */
 #information, #droite {
     float: left;
-    width: 50%;
     height: 100%;
+}
+#information {
+    width: 40%;
+}
+#droite {
+    width: 60%;
 }
 
 #contenu {
     display: none;
-    background-color: coral;
     position: relative;
     top: 0;
     bottom: 0;
@@ -61,16 +89,12 @@ footer {
 }
 #tables {
     position: absolute;
-    top: 140px;
+    top: 180px;
     right: 10px;
 }
 
 #resultat, #information {
     overflow: scroll;
-}
-
-#tablesql {
-    background-color: aquamarine;
 }
 
 table {
