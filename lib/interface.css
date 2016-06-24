@@ -32,11 +32,11 @@ footer {
 #contenu {
     display: none;
     background-color: coral;
-    position: fixed;
-    top: 100px;
-    bottom: 50px;
-    left: 100px;
-    right: 100px;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #requete, #resultat {
@@ -65,7 +65,7 @@ footer {
     right: 10px;
 }
 
-#resultat {
+#resultat, #information {
     overflow: scroll;
 }
 
