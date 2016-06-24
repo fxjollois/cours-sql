@@ -1,9 +1,10 @@
 body {
     font-family: monospace;
     font-size: 12pt;
+    height: 100%;
 }
 
-body, h1, table {
+body, h1, table, p {
     margin: 0;
     padding: 0;
 }
@@ -13,14 +14,27 @@ header {
     height: 100px;
     padding-left: 50px;
 }
-h1, h2 {
+h1, h2, #boutons {
     display: inline-block;
+}
+#boutons {
+    float: right;
+    margin-top: 30px;
+    margin-right: 100px;
+}
+#lancer, #tables {
+    visibility: hidden;
 }
 
 /* pied de page */
 footer {
     height: 50px;
     text-align: center;
+    font-size: .9em;
+    overflow: scroll;
+}
+footer p {
+    padding-top: 15px;
 }
 
 /* Affichage des boutons */
@@ -31,14 +45,19 @@ button {
     background-color: slategray;
     color: white;
     font-size: 1.5em;
-    display: block;
     margin: 10px auto;
+    text-align: center;
 }
 button:hover {
     background-color: steelblue;
 }
 button.active {
     background-color: seagreen;
+}
+
+/* accueil */
+#choixAccueil {
+    text-align: center;
 }
 
 /* partie interface */
@@ -67,30 +86,19 @@ button.active {
     right: 0;
 }
 
-#requete, #resultat {
-    height: 50%;
+#requete {
+    height: 30%;
+    padding: 10px;
+}
+#resultat {
+    height: 70%;
     padding: 10px;
 }
 
 #requetesql {
-    border: 0;
-    background-color: white;
     height: 100%;
     width: 100%;
-    resize: none;
-}
-
-#lancer, #tables {
-    float: right;
-    width: 80px;
-    margin-right: 10px;
-    text-align: center;
-    visibility: hidden;
-}
-#tables {
-    position: absolute;
-    top: 180px;
-    right: 10px;
+    font-size: 12pt;
 }
 
 #resultat, #information {
