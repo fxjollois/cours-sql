@@ -101,6 +101,10 @@ button.active {
     right: 0;
 }
 
+#tabtables {
+    font-family: monospace;
+}
+
 #requete {
     height: 30%;
     padding: 10px;
