@@ -1,5 +1,5 @@
 body {
-    font-family: monospace;
+    font-family: Times serif;
     font-size: 12pt;
     height: 100%;
 }
@@ -13,17 +13,23 @@ body, h1, table, p {
 header {
     height: 100px;
     padding-left: 50px;
+    overflow: hidden;
 }
 h1, h2, #boutons {
     display: inline-block;
 }
 #boutons {
-    float: right;
-    margin-top: 30px;
-    margin-right: 100px;
+    position: fixed;
+    top: 30px;
+    right: 50px;
 }
 #lancer, #tables {
     visibility: hidden;
+}
+#titre {
+    position: fixed;
+    top: 50px;
+    left: 50px;
 }
 
 /* pied de page */
@@ -44,7 +50,7 @@ button {
     border: solid 1px black;
     background-color: slategray;
     color: white;
-    font-size: 1.5em;
+    font-size: 1.2em;
     margin: 10px auto;
     text-align: center;
 }
@@ -63,6 +69,15 @@ button.active {
 /* partie interface */
 #interface {
     background-color: #ddd;
+}
+
+/* lecon */
+#lecon h1, #lecon p, #lecon pre {
+    margin: 10px;
+}
+
+#lecon pre:hover {
+    background-color: white;
 }
 
 /* paramètre de l'interface */
@@ -107,4 +122,8 @@ button.active {
 
 table {
     white-space: pre-wrap;
+}
+
+button.item {
+    min-width: 0;
 }

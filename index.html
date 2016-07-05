@@ -16,15 +16,25 @@
         
         <!-- ACE.js -->
         <script src="lib/ace/ace.js"></script>
+        
+        <!-- marked -->
+        <script src="lib/marked.min.js"></script>
+        
+        <!-- highlights -->
+        <link rel="stylesheet" href="lib/highlight/styles/default.css">
+        <script src="lib/highlight/highlight.pack.js"></script>
+        <!-- <script>hljs.initHighlightingOnLoad();</script> -->
     </head>
     <body>
         <header>
             <h1>SQL</h1>
+            &nbsp;&nbsp;
             <h2>Cours et exercices</h2>
+            <div id = "titre"></div>
             <div id = "boutons">
                 <button id = "accueil">Accueil</button>
                 <button id = "lancer">Exécuter la requête</button>
-                <button id = "tables">Afficher les tables de la base</button>
+                <button id = "tables">Afficher les tables</button>
             </div>
         </header>
         <section id = "interface">
