@@ -1,5 +1,0 @@
-{
-    "intitule": "Test des cours",
-    "base": "exemple.sqlite",
-    "fichiers": ["t1", "t2"]
-}
