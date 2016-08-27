@@ -1,0 +1,1 @@
+# Fonctions sur chaînes de caractères
