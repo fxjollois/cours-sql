@@ -1,5 +1,5 @@
 body {
-    font-family: Times serif;
+    font-family: sans-serif;
     font-size: 12pt;
     height: 100%;
     background-color: #eee;
@@ -32,6 +32,11 @@ header h1, header h2, #boutons {
     top: 50px;
     left: 50px;
 }
+#bdd {
+    position: fixed;
+    top: 70px;
+    left: 50px;    
+}
 
 /* pied de page */
 footer {
@@ -41,7 +46,16 @@ footer {
     overflow: scroll;
 }
 footer p {
-    padding-top: 15px;
+    margin-top: 5px;
+}
+
+/* Affichage des liens */
+a {
+    text-decoration: none;
+    color: darkred;
+}
+a:hover {
+    color: red;
 }
 
 /* Affichage des boutons */
@@ -53,7 +67,7 @@ button {
     color: snow;
     font-size: 1.2em;
     margin: 10px auto;
-    text-align: center;
+    text-align: left;
 }
 button:hover {
     background-color: steelblue;
