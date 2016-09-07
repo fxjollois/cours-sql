@@ -57,6 +57,7 @@ button {
 }
 button:hover {
     background-color: steelblue;
+    cursor: pointer;
 }
 button.active {
     background-color: darkslategrey;
@@ -88,6 +89,7 @@ button.active {
 
 #lecon pre:hover {
     background-color: #eee;
+    cursor: pointer;
 }
 
 #textes p {
