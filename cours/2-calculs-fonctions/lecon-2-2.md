@@ -1,6 +1,6 @@
 # Traitement conditionnel
 
-Nous avons vu comment se restreindre à un sous-ensemble d'une table bia les restrictions dans la partie `WHERE` d'une requête. Il existe aussi une possibilité de faire un traitement conditionnel avec le terme `CASE`. Dans un `SELECT`, celui-ci va nous permettre de conditionner la valeur d'une colonne par les valeurs d'autres colonnes.
+Nous avons vu comment se restreindre à un sous-ensemble d'une table via les restrictions dans la partie `WHERE` d'une requête. Il existe aussi une possibilité de faire un traitement conditionnel avec le terme `CASE`. Dans un `SELECT`, celui-ci va nous permettre de conditionner la valeur d'une colonne par les valeurs d'autres colonnes.
 
 ## Comparaison à des valeurs (égalité)
 
