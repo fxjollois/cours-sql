@@ -87,6 +87,6 @@ SELECT Refprod, UnitesStock, UnitesCom, NiveauReap,
 	- si elle vaut entre 1 et 5% (inclus) : `"petite remise"`
 	- si elle vaut entre 6 et 15% (inclus) : `"remise modérée"`
 	- sinon :`"remise importante"`
-3. Indiquer pour les commandes envoyées en retard (date d'envoi `DateEnv` supérieure (ou égale) à la date butoir `ALivAvant`)
+3. Indiquer pour les commandes envoyées si elles ont été envoyées en retard (date d'envoi `DateEnv` supérieure (ou égale) à la date butoir `ALivAvant`) ou à temps
 
 

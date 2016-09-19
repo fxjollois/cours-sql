@@ -87,9 +87,9 @@ SELECT RefProd,
 
 ## Exercices
 
-La table DetailCommande contient l'ensemble des lignes d'achat de chaque commande.
+La table `DetailCommande` contient l'ensemble des lignes d'achat de chaque commande.
 
-1. Calculer pour la commande numéro 10251, pour chaque produit acheté dans celle-ci, le montant de la ligne d'achat en incluant la remise (stockée en proportion dans la table). Afficher donc :
+1. Calculer pour la commande numéro `10251`, pour chaque produit acheté dans celle-ci, le montant de la ligne d'achat en incluant la remise (stockée en proportion dans la table). Afficher donc :
 	- le prix unitaire, 
 	- la remise, 
 	- la quantité, 
