@@ -43,13 +43,13 @@ SELECT RefProd,
     WHERE Indisponible = 1;
 ```
 
-Et bien évidemment, on peut aussi trier le résultat, à l'aide de `ORDER`, et se limiter à $n$ lignes, à l'aide de `LIMIT`. Nous avons donc ici les trois produits indisponibles avec le plus haut montant en stock.
+Et bien évidemment, on peut aussi trier le résultat, à l'aide de `ORDER`, et se limiter à n lignes, à l'aide de `LIMIT`. Nous avons donc ici les trois produits indisponibles avec le plus haut montant en stock.
 
 ```sql
 SELECT RefProd, 
 		PrixUnit * UnitesStock AS "Montant en stock"
     FROM Produit
-    WHERE Indisponible = 0
+    WHERE Indisponible = 1
     ORDER BY 2 DESC
     LIMIT 3;
 ```
