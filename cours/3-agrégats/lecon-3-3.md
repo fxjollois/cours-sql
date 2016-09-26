@@ -57,7 +57,7 @@ SELECT NoFour,
 
 ## Agrégat complexe
 
-Par contre, il arrive que nous souhaitons avoir un critère d'aggrégation prenant en compte plusieurs attributs. Par exemple, on peut vouloit connaître le nombre d'étudiants en DUT STID par sexe et par année (1ère ou 2ème). Dans ce cas, nous aurons à calculer quatre valeurs :
+Par contre, il arrive que nous souhaitons avoir un critère d'aggrégation prenant en compte plusieurs attributs. Par exemple, on peut vouloir connaître le nombre d'étudiants en DUT STID par sexe et par année (1ère ou 2ème). Dans ce cas, nous aurons à calculer quatre valeurs :
 
 - le nombre d'hommes en 1ère année
 - le nombre d'hommes en 2ème année
