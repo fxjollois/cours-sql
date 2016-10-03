@@ -24,7 +24,7 @@ Vous remarquerez que nous prenons le singulier, car certains produits sont vendu
 
 ## Exercice 2
 
-> Lister les fournisseurs françaises, en affichant uniquement le nom, le contact et la ville, trié par ville
+> Lister les fournisseurs français, en affichant uniquement le nom, le contact et la ville, trié par ville
 
 Ici, nous allons d'abord nous concentrer sur les fournisseurs français. Ce sont ceux pour lesquels l'attribut `Pays` est égal à la chaîne `"France"`.
 
