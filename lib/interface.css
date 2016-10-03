@@ -151,7 +151,7 @@ button.active {
 #resultat {
     height: 70%;
     padding: 10px;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 #requetesql {
