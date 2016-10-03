@@ -48,7 +48,7 @@ Ici, rien de compliqué non plus. On fait une restriction aux produits du fourni
 Le seul changement ici est de modifier le nom des colonnes (avec `AS`) pour avoir un rendu plus informatif.
 
 ```sql
-SELECT NomProd as "Produit du fournisseur 8",
+SELECT UPPER(NomProd) as "Produit du fournisseur 8",
         RefProd AS "Référence"
     FROM Produit
     WHERE NoFour = 8
