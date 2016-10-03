@@ -151,6 +151,7 @@ button.active {
 #resultat {
     height: 70%;
     padding: 10px;
+    overflow: hidden;
 }
 
 #requetesql {
@@ -159,7 +160,7 @@ button.active {
     font-size: 12pt;
 }
 
-#resultat, #information {
+#information {
     overflow: scroll;
 }
 
