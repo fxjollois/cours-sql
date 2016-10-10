@@ -18,7 +18,8 @@ Si nous souhaitons refaire la requête récupérant les produits (nom du produit
 
 ```sql
 SELECT NomProd, Societe
-	FROM Produit NATURAL JOIN Fournisseur
+	FROM Produit INNER JOIN Fournisseur
+		ON Produit.NoFour = Fournisseur.NoFour
 	WHERE Pays = "France";
 ```
 
