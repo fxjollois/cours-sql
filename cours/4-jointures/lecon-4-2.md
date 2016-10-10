@@ -51,7 +51,7 @@ Ainsi, la requête précédente devient la suivante.
 
 ```sql
 SELECT *
-	FROM Produit AS P INNER JOIN Categorie AS C
+	FROM Produit P INNER JOIN Categorie C
 		ON P.CodeCateg = C.CodeCateg;
 ```
 
