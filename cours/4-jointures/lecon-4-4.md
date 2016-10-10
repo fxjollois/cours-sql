@@ -82,5 +82,5 @@ Ce type de jointure ne permet pas de faire de *jointure externe*.
 ## Exercices
 
 1. Récupérer les informations des fournisseurs pour chaque produit, avec jointure *à la main*
-2. Afficher le détail des commandes du client `"Lazy K Kountry Store"`, avec jointure *à la main*
+2. Afficher les informations des commandes du client `"Lazy K Kountry Store"`, avec jointure *à la main*
 3. Afficher le nombre de commande pour chaque messager (en indiquant son nom), avec jointure *à la main*
