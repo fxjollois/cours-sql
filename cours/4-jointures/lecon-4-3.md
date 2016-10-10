@@ -6,7 +6,7 @@ Comme indiqué précédemment, si une ligne d'une table n'a pas de correspondanc
 
 Ainsi, les clients sans commande associée ne seront pas dans la table résultante de la jointure naturelle ou interne entre `Client` et `Commande`. 
 
-Pour cela, nous devons utiliser une **jointure externe** (`OUTER JOIN`) . Celle-ci a pour but de garder toutes les lignes des dexu tables (ou d'une seule des deux).
+Pour cela, nous devons utiliser une **jointure externe** (`OUTER JOIN`) . Celle-ci a pour but de garder toutes les lignes des deux tables (ou d'une seule des deux).
 
 Une jointure se fait entre deux tables. Nous parlerons de **jointure externe gauche** (`LEFT OUTER JOIN`) quand nous garderons les lignes de la table à gauche (la première citée donc). Et nous parlerons de **jointure externe droite** (`RIGHT OUTER JOIN`) quand nous garderons les lignes de la table à droite (la deuxième donc). Enfin, si l'on souhaite garder toutes les lignes des deux tables, il faut faire une **jointure externe complète** (`FULL OUTER JOIN`).
 
