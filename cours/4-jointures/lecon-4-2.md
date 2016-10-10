@@ -88,5 +88,5 @@ SELECT COUNT(DISTINCT CodeCli)
 ## Exercices
 
 1. Récupérer les informations des fournisseurs pour chaque produit, avec une jointure interne
-2. Afficher le détail des commandes du client `"Lazy K Kountry Store"`, avec une jointure interne
+2. Afficher les informations des commandes du client `"Lazy K Kountry Store"`, avec une jointure interne
 3. Afficher le nombre de commande pour chaque messager (en indiquant son nom), avec une jointure interne
