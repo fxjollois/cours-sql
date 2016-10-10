@@ -71,5 +71,5 @@ Un **jointure naturelle** n'est donc pas réalisable lorsque :
 ## Exercices
 
 1. Récupérer les informations des fournisseurs pour chaque produit
-2. Afficher le détail des commandes du client `"Lazy K Kountry Store"`
+2. Afficher les informations des commandes du client `"Lazy K Kountry Store"`
 3. Afficher le nombre de commande pour chaque messager (en indiquant son nom)
