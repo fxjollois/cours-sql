@@ -24,7 +24,7 @@ header h1, header h2, #boutons {
     top: 40px;
     right: 50px;
 }
-#lancer, #tables {
+#lancer, #tables, #schema {
     visibility: hidden;
 }
 #titre {
