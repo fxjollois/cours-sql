@@ -60,7 +60,7 @@ a:hover {
 
 /* Affichage des boutons */
 button {
-    min-width: 80px;
+    min-width: 60px;
     height: 40px;
     border: none; /* solid 1px black; */
     background-color: slategray;
