@@ -26,7 +26,7 @@ Dans les deux requêtes ci-dessous, il est possible de faire autrement car nous 
 
 Par contre, si on cherche à comparer plus d'un attribut, il devient difficile (voire impossible parfois) d'utiliser l'opérateur `=` ou `IN`, ou une jointure. On passe donc par `EXISTS`.
 
-On cherche ici à trouver des clients qui habitent dans la même ville (et donc le même pays) qu'un employé. Ici, on rate tous les habitants des états-unis
+On cherche ici à trouver des clients qui habitent dans la même ville (et donc le même pays) qu'un employé. 
 
 ```sql
 SELECT Societe, Ville, Pays
