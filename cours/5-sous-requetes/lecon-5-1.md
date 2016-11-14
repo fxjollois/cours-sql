@@ -96,5 +96,5 @@ SELECT RefProd, NomProd, PrixUnit
 ## Exercices
 
 1. Lister les employés n'ayant jamais effectué une commande, via une sous-requête
-1. Nombre de produits proposés par la société fournisseur `"Mayumi's"`, via une sous-requête
+1. Nombre de produits proposés par la société fournisseur `"Mayumis"`, via une sous-requête
 1. Nombre de commandes passées par des employés sous la responsabilité de `"Patrick Emery"`
