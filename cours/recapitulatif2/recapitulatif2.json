@@ -1,0 +1,5 @@
+{
+    "intitule": "Récapitulatif 2",
+    "base": "Gymnase2000.sqlite",
+    "fichiers": ["recap-2-1", "recap-2-2", "recap-2-3", "recap-2-4"]
+}
