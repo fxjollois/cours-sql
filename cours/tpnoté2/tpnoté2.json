@@ -1,0 +1,5 @@
+{
+    "intitule": "TP noté 2",
+    "base": "world.sqlite",
+    "fichiers": ["tpnoté-2-1", "tpnoté-2-2", "tpnoté-2-3"]
+}
