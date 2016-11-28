@@ -12,6 +12,6 @@
 	- la population totale
 	- l'espérance de vie moyenne
 	- le *GNP* (*Gross National Product* ou PNB) moyen
-1. Donner le nombre de pays total, le nombre de pays indépendants et le nombre de pays indépendants
+1. Donner le nombre de pays total, le nombre de pays indépendants et le nombre de pays non-indépendants
 1. Quel est le plus gros continent 
 1. Combien y a t'il de langues différentes ?
