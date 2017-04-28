@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald|Roboto+slab');
+body {
+	font-family: 'Roboto Slab', serif;
+}
+h1, h2 {
+	font-family: 'Oswald', sans-serif;
+}
+
+.remark-slide-content h1 { font-size: 3em; }
+.remark-slide-content h2 { font-size: 2em; }
+.remark-slide-content h3 { font-size: 1.25em; }
+
+.footnote {
+	position: absolute;
+	bottom: 3em;
+}
+.red {
+	color: Crimson; 
+}
+
+a {
+	color: DarkBlue;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+/* slide inverse niveau couleur */
+.inverse {
+	background: SteelBlue; 
+	color: WhiteSmoke;
+}
+.inverse h1, .inverse h2 {
+	color: GhostWhite;
+}
+.inverse a {
+	color: Ivory; 
+}
+
+/* Barre de progressions */
+
+#myProgress {
+	width: 100px;
+	height: 10px;
+	background-color: LightSteelBlue;
+}
+#myBar {
+	height: 10px;
+	background-color: SteelBlue;
+}
+.inverse #myProgress {
+	background-color: WhiteSmoke;
+}
+.inverse #myBar {
+	background-color: Ivory;
+}
+.title  #myProgress {
+	visibility: hidden;
+}
+

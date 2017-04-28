@@ -1,0 +1,7 @@
+# Présentation de l'outil `explore-data`
+
+Ce dépôt contient la présentation de l'outil [`explore-data`](https://github.com/fxjollois/explore-data), dédié à l'apprentissage de la statistique descriptive (univariée et bivariée).
+
+Les slides sont réalisés à l'aide de [`remarkjs`](https://remarkjs.com).
+
+Vous pouvez voir la présentation [ici](https://fxjollois.github.io/explore-data-presentation/)

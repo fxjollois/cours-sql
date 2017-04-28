@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "UTF-8">
+		<link rel = "stylesheet" type = "text/css" href = "presentation.css">
+	</head>
+	<body>
+		<textarea id="source">
+			<!-- 
+                Slideshow Markdown pas besoin car sourceUrl plus bas
+            -->
+		</textarea>
+		<script src="remark.min.js"></script>
+		<script>
+			var slideshow = remark.create({
+				sourceUrl: 'presentation.md',
+				countIncrementalSlides: false,
+				slideNumberFormat: function (current, total) {
+					p = Math.round((current - 1) / (total - 1) * 100);
+					return '<div id="myProgress"><div id="myBar" style="width: ' + p + '%"></div></div>'
+				}
+			});
+		</script>
+	</body>
+</html>
