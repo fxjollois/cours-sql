@@ -1,0 +1,5 @@
+{
+    "intitule": "Agrégats",
+    "base": "Comptoir2000.sqlite",
+    "fichiers": ["lecon-3-1", "lecon-3-2", "lecon-3-3", "lecon-3-4", "lecon-3-5"]
+}

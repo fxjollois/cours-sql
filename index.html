@@ -3,18 +3,48 @@
     <head>
         <title>SQL : cours et exercices</title>
         <meta charset="utf-8">
+        <!-- jQuery -->
         <script src="lib/jquery-3.0.0.min.js"></script>
+        
+        <!-- DataTable -->
+        <link rel="stylesheet" href="lib/jquery.dataTables.min.css">
+        <script src="lib/jquery.dataTables.min.js"></script>
+        
+        <!-- sql.js -->
         <script src="lib/sql.js"></script>
         <link rel="stylesheet" href="lib/interface.css">
+        
+        <!-- ACE.js -->
+        <script src="lib/ace/ace.js"></script>
+        
+        <!-- marked -->
+        <script src="lib/marked.min.js"></script>
+        
+        <!-- highlights -->
+        <link rel="stylesheet" href="lib/highlight/styles/default.css">
+        <script src="lib/highlight/highlight.pack.js"></script>
+        <!-- <script>hljs.initHighlightingOnLoad();</script> -->
     </head>
     <body>
         <header>
             <h1>SQL</h1>
+            &nbsp;&nbsp;
             <h2>Cours et exercices</h2>
+            <div id = "titre"></div>
+            <div id = "bdd"></div>
+            <div id = "boutons">
+                <button id = "accueil">Accueil</button>
+                <button id = "lancer">Exécution</button>
+                <button id = "tables">Tables</button>
+                <button id = "schema">Schéma</button>
+            </div>
         </header>
         <section id = "interface">
         </section>
-        <footer></footer>
+        <footer>
+            <p>Interface de cours SQL concernant uniquement la partie requêtage avec <code>SELECT</code> - Réalisé par <a href="http://fxjollois.github.io" target="_blank">FX Jollois</a></p>
+            <p>Développé avec la librairie <a href="https://github.com/kripken/sql.js/" target="_blank">sql.js</a>, basée sur <a href="https://www.sqlite.org/" target="_blank">SQLite</a>. Taper <code>CTRL + ENTER</code> pour exécuter.</p>
+        </footer>
         <script src="lib/interface.js"></script>
     </body>
 </html>

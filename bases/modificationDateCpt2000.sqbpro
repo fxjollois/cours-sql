@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="/Users/fxjollois/Sites/cours-sql/bases/Comptoir2000.sqlite"/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="506"/><expanded_item id="0" parent="-1"/><expanded_item id="1" parent="-1"/><expanded_item id="2" parent="-1"/><expanded_item id="3" parent="-1"/></tab_structure><tab_browse><current_table name="Commande"/><default_encoding codec=""/><browsetable_info data="AAAABQAAACIARABlAHQAYQBpAGwAQwBvAG0AbQBhAG4AZABlAEIAaQBzAAAAAAAAAAAAAAAAAAAAAAAAAAAA/////wAAABwARABlAHQAYQBpAGwAQwBvAG0AbQBhAG4AZABlAAAAAAAAAAAAAAAAAAAAAAAAAAAA/////wAAABYAQwBvAG0AbQBhAG4AZABlAEIAaQBzAAAAAAAAAAAAAAAAAAAAAAAAAAAA/////wAAABAAQwBvAG0AbQBhAG4AZABlAAAAAAAAAAAAAAAAAAAAAAAAAAAA/////wAAABIAQwBhAHQAZQBnAG8AcgBpAGUAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////"/></tab_browse><tab_sql><sql name="SQL 2">select DateComBis,
+		strftime('%Y', DateComBis),
+		strftime('%Y', 'now')
+	FROM Commande LIMIT 10;</sql><sql name="SQL 3">
+create view nouvelleDate as
+select maDate, 
+		Annee || '-' || Mois || '-' || Jour ,
+		date(Annee || '-' || Mois || '-' || Jour) as maDateNouv
+	FROM 
+		(select distinct maDate, 
+				substr(maDate, 1, 2) as Jour, 
+				substr(maDate, 6, 4) as Annee, 
+				case substr(maDate, 3, 3) 
+					WHEN 'JAN' THEN '01'
+					WHEN 'FEB' THEN '02'
+					WHEN 'MAR' THEN '03'
+					WHEN 'APR' THEN '04'
+					WHEN 'MAY' THEN '05'
+					WHEN 'JUN' THEN '06'
+					WHEN 'JUL' THEN '07'
+					WHEN 'AUG' THEN '08'
+					WHEN 'SEP' THEN '09'
+					WHEN 'OCT' THEN '10'
+					WHEN 'NOV' THEN '11'
+					WHEN 'DEC' THEN '12'
+				end as Mois
+			FROM (SELECT DISTINCT DateCom as maDate FROM Commande 
+							UNION 
+							SELECT DISTINCT ALivAvant as maDate FROM Commande
+							UNION
+							SELECT DISTINCT DateEnv as maDate FROM Commande));</sql><sql name="SQL 4">alter table Commande add column DateComBis DATE;
+update Commande
+	set DateComBis = (select maDateNouv from nouvelleDate WHERE maDate = DateCom);
+
+alter table Commande add column ALivAvantBis DATE;
+update Commande
+	set ALivAvantBis = (select maDateNouv from nouvelleDate WHERE maDate = ALivAvant);
+
+alter table Commande add column DateEnvBis DATE;
+update Commande
+	set DateEnvBis = (select maDateNouv from nouvelleDate WHERE maDate = DateEnv);
+
+drop view nouvelleDate;</sql><sql name="SQL 5">CREATE TABLE CommandeBis(
+  NoCom INT NOT NULL PRIMARY KEY,
+  CodeCli VARCHAR2(4) REFERENCES Client,
+  NoEmp INT REFERENCES Employe,
+  DateComBis DATE, 
+  ALivAvantBis DATE, 
+  DateEnvBis DATE,
+  NoMess VARCHAR2(30),
+  Port VARCHAR2(30),
+  Destinataire VARCHAR2(30),
+  AdrLiv VARCHAR2(30),
+  VilleLiv VARCHAR2(30),
+  RegionLiv VARCHAR2(30),
+  CodepostalLiv VARCHAR2(30),
+  PaysLiv VARCHAR2(30)
+  );
+  
+INSERT INTO CommandeBis
+	SELECT NoCom, CodeCli, NoEmp, DateComBis, ALivAvantBis,  DateEnvBis ,  NoMess ,  Port ,  Destinataire ,
+					AdrLiv ,  VilleLiv,   RegionLiv ,  CodepostalLiv ,  PaysLiv
+				FROM Commande	;</sql><sql name="SQL 7">CREATE TABLE DetailCommandeBis(
+  Nocom INT NOT NULL,
+  Refprod INT NOT NULL REFERENCES Produit,
+  PrixUnit NUMBER,
+  Qte INT,
+  Remise NUMBER
+);
+
+INSERT INTO DetailCommandeBis SELECT * FROM DetailCommande;
+
+DROP TABLE DetailCommande;
+</sql><sql name="SQL 6">drop table Commande;
+CREATE TABLE Commande(
+  NoCom INT NOT NULL PRIMARY KEY,
+  CodeCli VARCHAR2(4) REFERENCES Client,
+  NoEmp INT REFERENCES Employe,
+  DateCom DATE, 
+  ALivAvant DATE, 
+  DateEnv DATE,
+  NoMess VARCHAR2(30),
+  Port VARCHAR2(30),
+  Destinataire VARCHAR2(30),
+  AdrLiv VARCHAR2(30),
+  VilleLiv VARCHAR2(30),
+  RegionLiv VARCHAR2(30),
+  CodepostalLiv VARCHAR2(30),
+  PaysLiv VARCHAR2(30)
+  );
+  
+INSERT INTO Commande
+	SELECT NoCom, CodeCli, NoEmp, DateComBis, ALivAvantBis,  DateEnvBis ,  NoMess ,  Port ,  Destinataire ,
+					AdrLiv ,  VilleLiv,   RegionLiv ,  CodepostalLiv ,  PaysLiv
+				FROM CommandeBis	;
+				
+drop table CommandeBis;</sql><sql name="SQL 8">CREATE TABLE DetailCommande(
+  Nocom INT NOT NULL REFERENCES Commande,
+  Refprod INT NOT NULL REFERENCES Produit,
+  PrixUnit NUMBER,
+  Qte INT,
+  Remise NUMBER
+);
+
+INSERT INTO DetailCommande SELECT * FROM DetailCommandeBis;
+
+DROP TABLE DetailCommandeBis;
+</sql><current_tab id="6"/></tab_sql></sqlb_project>

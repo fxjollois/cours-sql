@@ -1,4 +1,11 @@
-body, h1, table {
+body {
+    font-family: sans-serif;
+    font-size: 12pt;
+    height: 100%;
+    background-color: #eee;
+}
+
+body, header h1, table, p {
     margin: 0;
     padding: 0;
 }
@@ -6,69 +13,161 @@ body, h1, table {
 /* en-tête */
 header {
     height: 100px;
+    padding-left: 50px;
+    overflow: hidden;
+}
+header h1, header h2, #boutons {
+    display: inline-block;
+}
+#boutons {
+    position: fixed;
+    top: 40px;
+    right: 50px;
+}
+#lancer, #tables, #schema {
+    visibility: hidden;
+}
+#titre {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+}
+#bdd {
+    position: fixed;
+    top: 70px;
+    left: 50px;    
 }
 
 /* pied de page */
 footer {
     height: 50px;
+    text-align: center;
+    font-size: .9em;
+    overflow: hidden;
+}
+footer p {
+    margin-top: 5px;
+}
+
+/* Affichage des liens */
+a {
+    text-decoration: none;
+    color: darkred;
+}
+a:hover {
+    color: red;
+}
+
+/* Affichage des boutons */
+button {
+    min-width: 60px;
+    height: 40px;
+    border: none; /* solid 1px black; */
+    background-color: slategray;
+    color: snow;
+    font-size: 1.2em;
+    margin: 10px auto;
+    text-align: left;
+}
+button:hover {
+    background-color: steelblue;
+    cursor: pointer;
+}
+button.active {
+    background-color: darkslategrey;
+}
+
+#choixAccueil button {
+    width: 300px;
+}
+
+/* accueil */
+#choixAccueil {
+    text-align: center;
 }
 
 /* partie interface */
 #interface {
-    background-color: #ddd;
+    background-color: #fff;
+}
+
+/* lecon */
+/*
+#lecon h1, #lecon p, #lecon pre {
+    margin: 10px;
+}
+*/
+#lecon {
+    padding: 10px;
+}
+
+#lecon pre:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+#textes p {
+    text-align: justify;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+#textes blockquote {
+    text-align: justify;
+    font-style: italic;
+    background-color: #f5f5f5;
 }
 
 /* paramètre de l'interface */
 #information, #droite {
     float: left;
-    width: 50%;
     height: 100%;
+}
+#information {
+    width: 40%;
+}
+#droite {
+    width: 60%;
 }
 
 #contenu {
     display: none;
-    background-color: coral;
-    position: fixed;
-    top: 100px;
-    bottom: 50px;
-    left: 100px;
-    right: 100px;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-#requete, #resultat {
-    height: 50%;
+#tabtables {
+    font-family: monospace;
+}
+
+#requete {
+    background-color: #eee;
+    height: 30%;
     padding: 10px;
 }
-
-#requetesql {
-    border: 0;
-    background-color: white;
-    height: 100%;
-    width: 100%;
-    resize: none;
-}
-
-#lancer, #tables {
-    float: right;
-    width: 80px;
-    margin-right: 10px;
-    text-align: center;
-    visibility: hidden;
-}
-#tables {
-    position: absolute;
-    top: 140px;
-    right: 10px;
-}
-
 #resultat {
+    height: 70%;
+    padding: 10px;
     overflow: scroll;
 }
 
-#tablesql {
-    background-color: aquamarine;
+#requetesql {
+    height: 100%;
+    width: 100%;
+    font-size: 12pt;
+}
+
+#information {
+    overflow: scroll;
 }
 
 table {
     white-space: pre-wrap;
+}
+
+button.item {
+    min-width: 0;
 }
