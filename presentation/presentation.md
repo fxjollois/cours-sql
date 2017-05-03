@@ -59,20 +59,20 @@ La solution ?
 
 - Programmation en `JavaScript`
 
-- Contenu écrit en [`markdown`]()
+- Contenu écrit en [`markdown`](https://daringfireball.net/projects/markdown/)
     - Découpage de celui-ci en notions
     - Une notion par TP
     - Intégration de deux TP récapitulatifs
     - Sujet de TP noté intégré
 
-- Bases de données au format [`sqlite`]()
+- Bases de données au format [`sqlite`](https://www.sqlite.org/)
 
-- Utilisation des librairies :
+- Utilisation des librairies `JS` :
     - [`sql.js`](https://github.com/kripken/sql.js/) : traduction de `sqlite` en `JS`
-    - [`jQuery`]() (et du plugin [`DataTable`]()) : manipulation des éléments de la page
-    - [`ace`]() : zone de saisie de la requête
-    - [`marked`]() : traduction `markdown` vers `HTML`
-    - [`highlight`]() : mise en valeur des mots-clés
+    - [`jQuery`](https://jquery.com/) (et du plugin [`DataTables`](https://datatables.net/)) : manipulation des éléments de la page
+    - [`ace`](https://ace.c9.io/) : zone de saisie de la requête
+    - [`marked`](https://github.com/chjj/marked) : traduction `markdown` vers `HTML`
+    - [`highlight`](https://highlightjs.org/) : mise en valeur des mots-clés
 
 ---
 
