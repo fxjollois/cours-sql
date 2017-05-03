@@ -51,9 +51,9 @@ a {
 	background-color: WhiteSmoke;
 }
 .inverse #myBar {
-	background-color: Ivory;
+	background-color: LightSteelBlue;
 }
-.title  #myProgress {
+.title #myProgress {
 	visibility: hidden;
 }
 
