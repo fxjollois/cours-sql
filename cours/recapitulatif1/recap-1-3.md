@@ -1,80 +1,22 @@
-# Agrégats
+# Calculs et fonctions
 
-## Exercice 1
+## Calculs arithmétiques
 
-> Donner la quantité totale commandée pour chaque produit
+1. Afficher en heure la durée de chaque séance (stockée en minute dans la table)
+1. Convertir la surface (en m2 dans la table) en pieds carrés (voir la [définition](https://fr.wikipedia.org/wiki/Pied_carr%C3%A9)) des gymnases de "Pierrefite"
 
-Pour rappel, la table `DetailCommande` contient toutes les lignes d'achat pour chaque commande. C'est dans celle-ci que l'on connaît combien d'unités de produit (avec la colonne `Qte`) a été acheté. Il faut donc faire une somme de cet attribut. Et puisque la demande est pour chaque produit, nous devons faire un regroupement (via `GROUP BY`) sur la référence du produit (`RefProd`).
+## Traitement conditionnel
 
-```sql
-SELECT RefProd, SUM(Qte) AS "Quantité commandée"
-    FROM DetailCommande
-    GROUP BY RefProd;
-```
+1. Afficher une nouvelle variable nommée `TitreCourtoisie`, qui prendra "M." pour les hommes et "Mme" pour les femmes
+1. Afficher une nouvelle variable `TypeGymnase`, qui prendra comme valeur "petit" si la surface est inférieure strictement à 400 m2, "moyen" si elle est entre 400 et 550 m2, et "grand" si elle est strictement supérieure à 550 m2
 
-## Exercice 2
+## Fonctions sur chaînes de caractères
 
-> Donner les cinq clients avec le plus de commandes, triés par ordre décroissant
+1. Concaténer le nom des sportifs avec la première lettre du prénom suivie d'un point, le tout en minuscules (par exemple "jollois f.")
+1. Afficher les gymnases situées sur une place (cf `Adresse`)
 
-Ici, la première opération à faire est de calculer le nombre de commandes de chaque client. Puisqu'une ligne de la table `Commande` correspond à une commande d'un client, il suffit de compter le nombre de lignes (avec `COUNT(*)`) pour chaque client (avec `GROUP BY`).
+## Fonctions sur les dates
 
-Puisqu'on veut les clients avec le plus de commandes, il est nécessaire de faire un tri (avec `ORDER BY`), celui-ci devant ien évidemment être décroissant (avec `DESC`).
+1. Donner la date du jour
+1. Donner le jour de la semaine du 1er janvier de l'année de naissance de chaque sportif
 
-Enfin, on se limite aux 5 premiers clients avec `LIMIT 5`.
-
-```sql
-SELECT CodeCli, COUNT(*) AS NbCommande
-    FROM Commande
-    GROUP BY CodeCli
-    ORDER BY NbCommande DESC
-    LIMIT 5;
-```
-
-## Exercice 3
-
-> Calculer le montant total des lignes d'achats de chaque commande, sans et avec remise sur les produits
-
-Ici, le but est donc de calculer le montant de chaque commande (hors frais de port), sans et avec remise. Il faut donc faire un calcul pour chaque commande, ce qui implique `GROUP BY NoCom`. 
-
-Ensuite, il est totalement possible de faire un calcul dans la fonction `SUM()` comme fait ici.
-
-```sql
-SELECT NoCom, 
-        SUM(PrixUnit * Qte) AS "Montant sans remise",
-        SUM(PrixUnit * Qte * (1 - Remise)) AS "Montant avec remise"
-    FROM DetailCommande
-    GROUP BY NoCom;
-```
-
-## Exercice 4
-
-> Pour chaque catégorie avec au moins 10 produits, calculer le montant moyen des prix
-
-Cette requête nécessite deux calculs d'agrégats
-
-- un dénombrement (avec `COUNT(*)`) pour savoir combien de produits existent pour chaque catégorie
-- une moyenne (avec `AVG()`) pour calculer le prix moyen
-
-Mais nous n'avons besoin que du second dans l'affichage (et donc dans la partie `SELECT`). Le premier calcul nous sert uniquement à se restreindre (avec `HAVING` donc) aux catégories ayant plus de 10 produits.
-
-```sql
-SELECT CodeCateg, 
-        ROUND(AVG(PrixUnit), 2) AS "Prix moyen"
-    FROM Produit
-    GROUP BY CodeCateg
-    HAVING COUNT(*) >= 10;
-```
-
-## Exercice 5
-
-> Donner le numéro de l'employé ayant fait le moins de commandes
-
-Dans le même ordre idée que précédemment, nous n'avons pas spécifiquement besoin de l'affichage du nombre de commandes. Le `COUNT(*)` nous sert uniquement à effectuer l'ordre des employés, ce que nous pouvons faire parce que nous avons aussi spécifier `GROUP BY NoEmp`. Une fois le tri fait, l'employé avec le moins de commandes est le premier de la liste (d'où le `LIMIT 1`).
-
-```sql
-SELECT NoEmp AS "Employé avec le moins de commande"
-    FROM Commande
-    GROUP BY NoEmp
-    ORDER BY COUNT(*)
-    LIMIT 1;
-```
