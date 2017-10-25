@@ -55,4 +55,4 @@ SELECT attributs, calculs, agrégats
 1. Lister les fournisseurs ne fournissant qu'un seul produit
 2. Lister les catégorie dont les prix sont en moyenne supérieurs strictement à 150 euro
 3. Lister les fournisseurs ne fournissant qu'une seule catégorie de produits
-4. Lister le produit le plus cher pour chaque fournisseur, pour les produits de plus de 500 euro
+4. Lister le produit le plus cher pour chaque fournisseur, pour les produits de plus de 300 euro

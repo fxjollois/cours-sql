@@ -4,6 +4,8 @@ Nous disposons en `SQL` (comme dans d'autres langages) de plusieurs formats pour
 
 Nous allons voir ici quelques fonctions utiles pour les dates : `DATE()` pour générer des dates, `STRFTIME()` pour obtenir des informations à partir d'une date.
 
+Vous trouverez sur [cette page](https://sqlite.org/lang_datefunc.html) plus d'informations sur les fonctions disponibles.
+
 ## Génération de dates
 
 En premier lieu, si nous désirons avoir la date du jour (de l'exécution de la requête bien sûr), nous pouvons exécuter cette requête. La date est affichée au format `"YYYY-MM-DD"`.

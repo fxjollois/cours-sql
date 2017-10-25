@@ -50,6 +50,14 @@ SELECT *
 
 Dans un souci de clarté, il est tout de même préférable d'utiliser la première option.
 
+Ensuite, pour modifier letype de tri, il est possible d'ajouter le terme **`DESC`** pour indiquer qu'on souhaite un tri décroissant. Par défaut, c'est donc un tri croissant qui est fait. 
+
+```sql
+SELECT * 
+    FROM Employe
+    ORDER BY Nom DESC;
+```
+
 Il est possible d'avoir plusieurs critères de tri. Pour cela, il faut séparer les différents attributs (nom ou position) par une virgule (*`,`*). La requête suivante permet donc d'avoir les employés triés d'abord par leur fonction, puis par leur nom.
 
 ```sql
@@ -58,7 +66,7 @@ SELECT *
     ORDER BY Fonction, Nom;
 ```
 
-Enfin, pour chaque attribut de tri, il est possible d'ajouter le terme **`DESC`** pour indiquer qu'on souhaite un tri décroissant. Par défaut, c'est donc un tri croissant qui est fait. Voici la même requête que précédemment, avec les fonctions triées par ordre alphabétique décroissant.
+Voici la même requête que précédemment, avec les fonctions triées par ordre alphabétique décroissant.
 
 ```sql
 SELECT * 

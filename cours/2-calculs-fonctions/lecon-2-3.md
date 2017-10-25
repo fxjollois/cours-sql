@@ -18,7 +18,7 @@ SELECT NoEmp, Nom || " " || Prenom
 
 ## Extraction d'une sous-chaîne
 
-Une commande intéressante sur les chaînes est la commande `SUBSTR(, chaine, debut, longueur)` qui permet d'extraire une sous-chaîne d'une chaîne, en partant du caractère précisé dans `debut` et sur une longueur précisé par `longueur`. Dans l'exemple ci-dessous, nous extrayons l'initiale du prénom.
+Une commande intéressante sur les chaînes est la commande `SUBSTR(chaine, debut, longueur)` qui permet d'extraire une sous-chaîne d'une chaîne, en partant du caractère précisé dans `debut` et sur une longueur précisé par `longueur`. Dans l'exemple ci-dessous, nous extrayons l'initiale du prénom.
 
 ```sql
 SELECT NoEmp, Nom || " " || SUBSTR(Prenom, 1, 1)

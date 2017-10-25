@@ -114,4 +114,4 @@ Il faut noter que l'opérateur `LIKE` est insensible à la casse, i.e. il ne tie
 1. Lister les clients français installés à Paris
 2. Lister les clients suisse, allemands et belges
 3. Lister les clients dont le numéro de fax n'est pas renseigné
-4. Lister les clients dont le nom contient `"restaurant"`
+4. Lister les clients dont le nom contient `"restaurant"` (nom présent dans la colonne `Societe`)
