@@ -3,7 +3,7 @@
 ## Calculs arithmétiques
 
 1. Afficher en heure la durée de chaque séance (stockée en minute dans la table)
-1. Convertir la surface (en m2 dans la table) en pieds carrés (voir la [définition](https://fr.wikipedia.org/wiki/Pied_carr%C3%A9)) des gymnases de "Pierrefite"
+1. Convertir la surface (en m2 dans la table) en pieds carrés (voir la [définition](https://fr.wikipedia.org/wiki/Pied_carr%C3%A9)) des gymnases de "Pierrefitte"
 
 ## Traitement conditionnel
 
