@@ -27,7 +27,7 @@ SELECT DISTINCT Fonction
     FROM Employe;
 ```
 
-Ceci fonctionne aussi lorsqu'on a indiquer plusieurs attributs dans le `SELECT`.
+Ceci fonctionne aussi lorsqu'on a indiqué plusieurs attributs dans le `SELECT`.
 
 ## Renommage
 
