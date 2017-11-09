@@ -8,7 +8,7 @@ Nous devons utiliser ce qu'on appelle un **Système de Gestion de Bases de Donn�
 
 ## Exemple de table
 
-Voici un exemple de table simple, décrivant des étudiants. Chaque ligne est appelé un **tuple** ou *enregistrement*. Chaque colonne est appelée un **attribut** ou une *variable*. 
+Voici un exemple de table simple, décrivant des étudiants. Chaque ligne est appelée un **tuple** ou *enregistrement*. Chaque colonne est appelée un **attribut** ou une *variable*. 
 
 Table `Etudiant`: 
 
@@ -26,7 +26,7 @@ Afin de créer des bases de données, il a été défini un modèle relationnel 
 
 ### Contrainte de domaine
 
-Tout attribut a un **domaine** de valeurs, qui sont ici ls suivants :
+Tout attribut a un **domaine** de valeurs, qui sont ici les suivants :
 
 - `IdEtu` : entier,
 - `Nom`, `Prenom` : chaîne de caractères
@@ -56,7 +56,7 @@ Table `Note` :
  2 | Stat | 7
  ... | ... | ...
 
-L'attribut `IdEtu` présent ici fait **référence** à l'attribut `IdEtu` de la table `Etudiant` vue plus haut. On parle aussi de **clé externe**. C'est un attribut d'une relation devant apparaître comme clé primaire dans une autre relation.
+L'attribut `IdEtu` présent ici fait **référence** à l'attribut `IdEtu` de la table `Etudiant` vue plus haut. On parle aussi de **clé externe** ou de ** clé étrangère**. C'est un attribut d'une relation devant apparaître comme clé primaire dans une autre relation.
 
 La contrainte de référence veut que toute valeur présente dans la colonne `IdEtu` de la table `Note` doit être présente dans la colonne `IdEtu` de la table `Etudiant`. Cela évite de mettre une note à un étudiant qui n'existe pas.
 
