@@ -60,7 +60,7 @@ SELECT Nom, Prenom, Fonction,
 
 ## Recherche d'une sous-chaîne
 
-Pour recherche la première apparition d'une sous-chaîne dans une chaîne, nous disposons de la commande `INSTR(chaîne, souschaine)`. Celle-ci recherche donc à quelle position dans la chaîne se trouve la première occurence de la sous-chaîne. Si la sous-chaîne n'est pas présente, la fonction renvoie `0`.
+Pour rechercher la première apparition d'une sous-chaîne dans une chaîne, nous disposons de la commande `INSTR(chaîne, souschaine)`. Celle-ci recherche donc à quelle position dans la chaîne se trouve la première occurence de la sous-chaîne. Si la sous-chaîne n'est pas présente, la fonction renvoie `0`.
 
 Ci-dessous, nous cherchons la présence du terme `"Ave."` dans l'adresse des employés. 
 
@@ -72,7 +72,7 @@ SELECT Nom, Adresse,
 
 ## Exercices
 
-Dans une même requête, sur la table `Client`, 
+Dans une même requête, sur la table `Client` : 
 
 1. Concaténer les champs `Adresse`, `Ville`, `CodePostal` et `Pays` dans un nouveau champ nommé `Adresse complète`, pour avoir :
 ```

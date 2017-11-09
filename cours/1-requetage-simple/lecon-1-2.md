@@ -17,7 +17,7 @@ Voici quelques explications :
 
 ## Limitation des résultats
 
-Il est parfois utile de n'avoir que les premières lignes d'une base, pour comprendre son contenu par exemple. Dans ce cas, il est possible d'ajouter en fin de requête le terme **`LIMIT`** suivi du nombre de lignes souhaité.
+Il est parfois utile de n'avoir que les premières lignes d'une table, pour comprendre son contenu par exemple. Dans ce cas, il est possible d'ajouter en fin de requête le terme **`LIMIT`** suivi du nombre de lignes souhaité.
 
 ```sql
 SELECT *
@@ -27,7 +27,7 @@ SELECT *
 
 ## Ordre des résultats
 
-De même, on est souvent appelé à faire un tri des données (ascendant ou descendant). Le terme **`ORDER`**, à placer en fin de requête aussi, mais avant le `LIMIT` si nécessaire, permet de réaliser un tel tri. Il faut bien noter que le tri ne se fait qu'à l'affichage et que la table n'est en rien modifiée. De plus, celui-ci peut se faire sur tout type de données.
+De même, on est souvent appelé à faire un tri des données (ascendant ou descendant). Le terme **`ORDER BY`**, à placer en fin de requête aussi, mais avant le `LIMIT` si nécessaire, permet de réaliser un tel tri. Il faut bien noter que le tri ne se fait qu'à l'affichage et que la table n'est en rien modifiée. De plus, celui-ci peut se faire sur tout type de données.
 
 Il est possible d'indiquer de deux façons le ou les attributs à prendre en compte pour le tri :
 
@@ -50,7 +50,7 @@ SELECT *
 
 Dans un souci de clarté, il est tout de même préférable d'utiliser la première option.
 
-Ensuite, pour modifier letype de tri, il est possible d'ajouter le terme **`DESC`** pour indiquer qu'on souhaite un tri décroissant. Par défaut, c'est donc un tri croissant qui est fait. 
+Ensuite, pour modifier le type de tri, il est possible d'ajouter le terme **`DESC`** pour indiquer qu'on souhaite un tri décroissant. Par défaut, c'est donc un tri croissant qui est fait. 
 
 ```sql
 SELECT * 

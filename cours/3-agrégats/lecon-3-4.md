@@ -1,6 +1,6 @@
 # Restriction sur agrégats
 
-Il arrive que nous souhaitons restreindre les résultats avec une condition sur un calcul d'agrégat. Par exemple, on peut vouloir chercher le nombre de clients par pays, uniquement pour les pays avec plus de 10 clients. Dans la requête suivante, il faudrait donc chercher *à la main* les pays avec plus de 10 clients, ce qui est à proscrire car non-automatique.
+Il arrive que nous souhaitions restreindre les résultats avec une condition sur un calcul d'agrégat. Par exemple, on peut vouloir chercher le nombre de clients par pays, uniquement pour les pays avec plus de 10 clients. Dans la requête suivante, il faudrait donc chercher *à la main* les pays avec plus de 10 clients, ce qui est à proscrire car non-automatique.
 
 ```sql
 SELECT Pays, COUNT(*)
@@ -53,6 +53,6 @@ SELECT attributs, calculs, agrégats
 ## Exercices
 
 1. Lister les fournisseurs ne fournissant qu'un seul produit
-2. Lister les catégorie dont les prix sont en moyenne supérieurs strictement à 150 euro
+2. Lister les catégories dont les prix sont en moyenne supérieurs strictement à 150 euros
 3. Lister les fournisseurs ne fournissant qu'une seule catégorie de produits
-4. Lister le produit le plus cher pour chaque fournisseur, pour les produits de plus de 300 euro
+4. Lister le produit le plus cher pour chaque fournisseur, pour les produits de plus de 300 euros
