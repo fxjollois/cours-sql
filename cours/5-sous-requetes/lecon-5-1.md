@@ -88,7 +88,7 @@ On peut par exemple chercher les produits pour lesquels il existe une vente (tab
 ```sql
 SELECT RefProd, NomProd, PrixUnit
     FROM Produit P
-    WHERE PrixUnit > (SELECT PrixUnit
+    WHERE PrixUnit IN (SELECT PrixUnit
                         FROM DetailCommande
                         WHERE RefProd = P.RefProd);
 ```
