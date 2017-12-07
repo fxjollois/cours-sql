@@ -171,3 +171,10 @@ table {
 button.item {
     min-width: 0;
 }
+
+/* pour coller les items en haut de la page */
+#items {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
