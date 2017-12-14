@@ -12,7 +12,7 @@ SELECT Societe, Fonction, Pays
     WHERE Fonction = "Propriétaire";
 ``` 
 
-Il faut noter que les deux`SELECT` doivent absolument renvoyer les mêmes champs.
+Il faut noter que les deux `SELECT` doivent absolument renvoyer les mêmes champs.
 
 ## Ordre et limite
 
