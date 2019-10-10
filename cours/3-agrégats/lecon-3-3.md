@@ -74,12 +74,12 @@ SELECT NoFour, CodeCateg, COUNT(*)
 
 Plus généralement, il est obligatoire que les attributs présents dans le `SELECT` soient aussi présents dans le `GROUP BY`. Dans le cas contraire, le résultat ne correspondra pas à ce qu'on cherche à obtenir et ce n'est pas toujours facile à repérer.
 
-Par exemple ici, en ne mettant pas CodeCateg dans le `GROUP BY`, on a bien un résultat mais seul un numéro de catégorie est retenu (au hasard) pour chaque fournisseur.
+Par exemple ici, en ne mettant pas CodeCateg dans le `GROUP BY`, on a bien un résultat mais seul un numéro de catégorie est retenu (au hasard) pour chaque fournisseur. Le fournisseur 4, qui a trois catégories (6, 7 et 8) avec chacune 1 seul produit, n'est plus que sur une seule ligne (avec la catégorie 7 affichée, mais bien 3 produits en tout).
 
 ```sql
 SELECT NoFour, CodeCateg, COUNT(*)
 	FROM Produit
-	GROUP By NoFour, CodeCateg;
+	GROUP By NoFour;
 ```
 ## Exercices
 
