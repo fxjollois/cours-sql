@@ -25,7 +25,7 @@ SELECT Pays, COUNT(*)
 	GROUP BY Pays;
 ```
 
-Ici, le résultat est ordonné par pays (remarquez que `"États-Unis"` est placé en dernier, du fait de l'accent sur le `"E"` mal géré). On peut donc améliorer la lisibilité du résultat en renommant le dénombrement et en ordonnant de manière décroissante par celui-ci.
+Ici, le résultat est ordonné par pays. On peut améliorer la lisibilité du résultat en renommant le dénombrement et en ordonnant de manière décroissante par celui-ci.
 
 ```sql
 SELECT Pays, COUNT(*) AS "Nb clients"
