@@ -7,7 +7,7 @@
 
 ## Traitement conditionnel
 
-1. Afficher une nouvelle variable nommée `TitreCourtoisie`, qui prendra "M." pour les hommes et "Mme" pour les femmes
+1. Afficher une nouvelle variable nommée `Civilite`, qui prendra "M." pour les hommes et "Mme" pour les femmes
 1. Afficher une nouvelle variable `TypeGymnase`, qui prendra comme valeur "petit" si la surface est inférieure strictement à 400 m2, "moyen" si elle est entre 400 et 550 m2, et "grand" si elle est strictement supérieure à 550 m2
 
 ## Fonctions sur chaînes de caractères
