@@ -8,6 +8,13 @@ Il est possible d'effectuer des calculs arithmétiques dans un `SELECT`, à l'ai
 Voici un premier exemple de calcul dans une requête. On additionne les unités en stock avec les unités commandées, pour chaque produit.
 
 ```sql
+SELECT *, UnitesStock + UnitesCom
+    FROM Produit;
+```
+
+Bien évidemment, on peut vouloir faire aussi un projection en même temps, en n'affichant que la référence du produit.
+
+```sql
 SELECT RefProd, UnitesStock + UnitesCom
     FROM Produit;
 ```
