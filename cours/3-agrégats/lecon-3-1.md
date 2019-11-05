@@ -64,4 +64,4 @@ SELECT COUNT(*)
 3. Calculer le nombre de produits de catégorie 2 et avec plus de 10 unités en stocks
 4. Calculer le nombre de produits de catégorie 1, des fournisseurs 1 et 18
 5. Calculer le nombre de pays différents de livraison
-6. Calculer le nombre de commandes réalisées le 28/03/1996
+6. Calculer le nombre de commandes réalisées le 28/03/2016
