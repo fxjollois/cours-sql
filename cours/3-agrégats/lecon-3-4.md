@@ -55,4 +55,4 @@ SELECT attributs, calculs, agrégats
 1. Lister les fournisseurs ne fournissant qu'un seul produit
 2. Lister les catégories dont les prix sont en moyenne supérieurs strictement à 150 euros
 3. Lister les fournisseurs ne fournissant qu'une seule catégorie de produits
-4. Lister les fonctions pour lesquelles la moyenne d'âge des employés dépasse les 60 ans
+4. Lister les fonctions pour lesquelles la moyenne d'âge des employés dépasse les 45 ans
