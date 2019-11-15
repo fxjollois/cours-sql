@@ -22,6 +22,13 @@ SELECT RefProd, NomProd, NomCateg
 	FROM Produit NATURAL JOIN Categorie;
 ```
 
+Si on souhaite avoir l'ensemble des colonnes d'une des tables, il est aussi possible de l'indiquer dans le `SELECT` avec le formalisme `table.*`: 
+
+```sql
+SELECT RefProd, NomProd, Categorie.*
+	FROM Produit NATURAL JOIN Categorie;
+```
+
 Ce processus nous permet aussi de se faire des restrictions sur un attribut d'une table pour qu'elles soient répercuter sur l'autre. Par exemple, ici, on ne retient que les produits fournis par des entreprises françaises.
 
 ```sql
