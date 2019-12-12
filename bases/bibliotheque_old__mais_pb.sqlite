@@ -1,0 +1,80 @@
+DROP TABLE EMPRUNTE;
+DROP TABLE LIVRE;
+DROP TABLE LECTEUR;
+DROP TABLE AUTEUR;
+
+CREATE TABLE Auteur ( 
+    codeAuteur INTEGER  NOT NULL , 
+    nomAuteur VARCHAR2 (25)  NOT NULL,
+    PRIMARY KEY (codeAuteur)
+);
+
+CREATE TABLE Lecteur ( 
+    codeLecteur INTEGER  NOT NULL , 
+    nomLecteur VARCHAR2 (25)  NOT NULL , 
+    ville VARCHAR2 (60)  NOT NULL , 
+    departement INTEGER  NOT NULL,
+    PRIMARY KEY (codeLecteur)
+);
+
+CREATE TABLE Livre ( 
+    codeLivre INTEGER  NOT NULL , 
+    titre VARCHAR2 (100)  NOT NULL , 
+    nbPages INTEGER , 
+    type VARCHAR2 (20)  NOT NULL , 
+    codeAuteur INTEGER  NOT NULL ,
+    PRIMARY KEY (codeLivre),
+    FOREIGN KEY (codeAuteur) REFERENCES Auteur(codeAuteur)
+);
+
+
+CREATE TABLE Emprunte ( 
+    codeLivre INTEGER  NOT NULL , 
+    codeLecteur INTEGER  NOT NULL , 
+    dateDebut DATE , 
+    dateFin DATE,
+    PRIMARY KEY (codeLivre, codeLecteur),
+    FOREIGN KEY (codeLivre) REFERENCES Livre(codeLivre),
+    FOREIGN KEY (codeLecteur) REFERENCES Lecteur(codeLecteur)
+);
+
+
+
+Insert into AUTEUR (CODEAUTEUR,NOMAUTEUR) values (1,'Franck Thilliez');
+Insert into AUTEUR (CODEAUTEUR,NOMAUTEUR) values (2,'Jean d''Ormesson');
+Insert into AUTEUR (CODEAUTEUR,NOMAUTEUR) values (3,'Hugues Royer');
+Insert into AUTEUR (CODEAUTEUR,NOMAUTEUR) values (4,'George R. R. Martin');
+
+Insert into LECTEUR (CODELECTEUR,NOMLECTEUR,VILLE,DEPARTEMENT) values (1,'Barriere Theo','Vannes',56);
+Insert into LECTEUR (CODELECTEUR,NOMLECTEUR,VILLE,DEPARTEMENT) values (2,'Bertho Julie','Séné',56);
+Insert into LECTEUR (CODELECTEUR,NOMLECTEUR,VILLE,DEPARTEMENT) values (3,'Coent Cindy','Redon',35);
+Insert into LECTEUR (CODELECTEUR,NOMLECTEUR,VILLE,DEPARTEMENT) values (4,'Evanno Dylan','Theix',56);
+Insert into LECTEUR (CODELECTEUR,NOMLECTEUR,VILLE,DEPARTEMENT) values (5,'Huet Francois','Redon',35);
+Insert into LECTEUR (CODELECTEUR,NOMLECTEUR,VILLE,DEPARTEMENT) values (6,'Le Normand Maxime','Vannes',56);
+Insert into LECTEUR (CODELECTEUR,NOMLECTEUR,VILLE,DEPARTEMENT) values (7,'Vincent Sarah','Vannes',56);
+
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (1,'La mémoire fantôme',480,'thriller',1);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (2,'Vertige',318,'thriller',1);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (3,'Tous les hommes en sont fous',413,'roman',2);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (4,'Presque rien sur presque tout',416,'roman',2);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (5,'Est-ce que tu m''entends ?',271,'roman',3);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (6,'Vanessa Paradis, la vraie histoire',382,'biographie',3);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (7,'Mylene',355,'biographie',3);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (8,'Le trône de fer, tome 1',476,'fantasy',4);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (9,'Le trône de fer, tome 2',540,'fantasy',4);
+Insert into LIVRE (CODELIVRE,TITRE,NBPAGES,TYPE,CODEAUTEUR) values (10,'Le trône de fer, tome 3',487,'fantasy',4);
+
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (8,1,date('2018-05-04'),date('2018-05-24'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (3,2,date('2018-12-01'),date('2018-12-12'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (5,3,date('2016-10-18'),date('2016-10-28'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (8,4,date('2018-05-26'),date('2018-06-06'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (5,5,date('2016-03-04'),date('2016-04-21'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (8,6,date('2017-12-13'),date('2017-12-26'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (1,7,date('2016-10-23'),date('2016-10-27'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (2,7,date('2017-04-04'),date('2017-04-12'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (8,7,date('2019-01-06'),date('2019-02-08'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (9,7,date('2019-02-08'),date('2019-02-28'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (10,7,date('2019-02-28'),date('2019-03-15'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (4,7,date('2018-04-04'),date('2018-04-13'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (2,2,date('2017-08-05'),date('2017-08-31'));
+Insert into EMPRUNTE (CODELIVRE,CODELECTEUR,DATEDEBUT,DATEFIN) values (8,2,date('2017-07-17'),date('2017-08-31'));
