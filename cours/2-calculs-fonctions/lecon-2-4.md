@@ -1,92 +1,92 @@
-# Fonctions sur les dates
+# Traitement conditionnel
 
-Nous disposons en `SQL` (comme dans d'autres langages) de plusieurs formats pour les dates. Soit nous avons uniquement la date (jour, mois et année - stockée sous la forme d'un entier représentant le nombre de jours depuis une date de référence, souvent le 1/1/1970). Il existe aussi un format où la date, l'heure et le fuseau horaire sont stockées (précisemment, le nombre de secondes depuis la même date de référence et le fuseau horaire). 
+Nous avons vu comment se restreindre à un sous-ensemble d'une table via les restrictions dans la partie `WHERE` d'une requête. Il existe aussi une possibilité de faire un traitement conditionnel avec le terme `CASE`. Dans un `SELECT`, celui-ci va nous permettre de conditionner la valeur d'une colonne par les valeurs d'autres colonnes.
 
-Nous allons voir ici quelques fonctions utiles pour les dates : `DATE()` pour générer des dates, `STRFTIME()` pour obtenir des informations à partir d'une date.
+## Comparaison à des valeurs (égalité)
 
-Vous trouverez sur [cette page](https://sqlite.org/lang_datefunc.html) plus d'informations sur les fonctions disponibles.
+La première utilisation de cette commande est de comparer un attribut à un ensemble de valeurs. Puisque la comparaison est l'égalité, ceci concerne principalement des attributs de type texte ou avec un nombre de valeurs restreint. Dans ce cas, l'ordre des comparaisons à l'aide de `WHEN` n'a aucune importance.
 
-## Génération de dates
-
-En premier lieu, si nous désirons avoir la date du jour (de l'exécution de la requête bien sûr), nous pouvons exécuter cette requête. La date est affichée au format `"YYYY-MM-DD"`.
+Dans l'exemple ci-dessous, nous voulons afficher les titres de courtoisie au complet pour `"Mlle"`, `"Mme"` et `"M."`. Pour `"Dr."`, nous voulons le garder par contre. Vous pouvez donc voir la syntaxe de cette commande.
 
 ```sql
-SELECT DATE("now");
+SELECT NoEmp, Nom, Prenom, TitreCourtoisie,
+        CASE TitreCourtoisie
+            WHEN "Mlle" THEN "Mademoiselle"
+            WHEN "Mme"  THEN "Madame"
+            WHEN "M."   THEN "Monsieur"
+            ELSE TitreCourtoisie
+        END AS Titre
+    FROM Employe;
 ```
 
-La commande `DATE()` peut prendre d'autres paramètres après le premier contenant la date (ou `"now"`), permettant de modifier cette date. La requête suivante permet d'avoir la date de la veille.
+On peut aussi l'utiliser pour mettre un message en fonction de la valeur d'un attribut. Ci-dessous, nous affichons à partir de quel niveau de stock le produit doit être commandé pour réapprovisionnement. Si c'est à `0`, on indique qu'il n'y a pas de niveau minimum. Sinon, on utilise la valeur stockée dans `NiveauReap` pour créer le message.
 
 ```sql
-SELECT DATE("now", "-1 day");
+SELECT Refprod, Nomprod, NiveauReap,
+        CASE NiveauReap
+            WHEN 0 THEN "Pas de niveau minimum"
+            ELSE "Réapprovisionnement à partir de " || NiveauReap || " unités restantes"
+        END AS Reapprovisionnement
+    FROM Produit;
 ```
 
-Il est possible de cumuler plusieurs modificateurs pour, par exemple, obtenir le dernier jour du mois dernier.
+## Comparaison à des valeurs (infériorité ou supériorité)
+
+Pour pouvoir comparer un attribut avec des valeurs mais autrement que via l'égalité, il est aussi possible d'utiliser un `CASE`. 
+
+Dans l'exemple ci-dessous, nous comparons le prix unitaire des produits à deux valeurs seuils. Si le prix est inférieur ou égal à 50, alors le produit est considéré dans la gamme des petits prix. Ensuite, on teste pour savoir s'il est inférieur ou égal à 500 et si oui, le produit sera dans la gamme moyenne. Enfin, par défaut, le produit sera dans la gamme de luxe.
 
 ```sql
-SELECT DATE("now", "start of month", "-1 day");
+SELECT Refprod, Nomprod, PrixUnit,
+        CASE 
+            WHEN PrixUnit <= 50 THEN "Petits prix"
+            WHEN PrixUnit <= 500 THEN "Gamme moyenne"
+            ELSE "Produits de luxe"
+        END AS Gamme
+    FROM Produit;
 ```
 
-La commande `DATE()` accepte aussi en premier paramètre une date au bon format, pour par exemple lui appliquer une modification par la suite. Nous avons ici la date du lendemain de la commande.
+Ceci revient à écrire en algo ce qui suit :
 
-```sql
-SELECT DATE(DateCom, "+1 day") 
-    FROM Commande;
+```
+SI (PrixUnit <= 50) ALORS
+	gamme = "Petits prix"
+SINON
+	SI (PrixUnit <= 500) ALORS
+		gamme = "Gamme moyenne"
+	SINON
+		gamme = "Produits de luxe"
+	FIN SI
+FIN SI
 ```
 
-## Informations à partir d'une date
+Dans le deuxième test, il n'est pas nécessaire de tester si le prix est supérieur strictement à 50, car on est dans la partie `SINON` du premier test.
 
-La commande `STRFTIME()` permet elle d'obtenir des informations à partir d'une date. On indique l'information désirée par un caractère précédé d'un `"%"`. Dans l'exemple ci-après, on récupère l'année (`"%Y"`), le mois (`"%m"`) et le jour ("`%d"`) de la date actuelle. Il est aussi possible de les combiner pour écrire la date dans un format plus classique pour nous.
+## Comparaison entre attributs
 
-```sql
-SELECT DATE("now") AS "Aujourd'hui",
-		STRFTIME("%Y", "now") AS "Année",
-		STRFTIME("%m", "now") AS "Mois",
-		STRFTIME("%d", "now") AS "Jour",
-		STRFTIME("%d/%m/%Y", "now") AS "Nouveau format";
-```
+Enfin, il est aussi possible d'utiliser ce test `CASE` pour comparer plusieurs attributs entre eux. 
 
-Il existe d'autres informations potentiellement intéressantes sur les dates, comme le jour de la semaine (`"%w"`), le jour dans l'année (`"%j"`) ou la semaine dans l'année (`"%W"`).
+Dans l'exemple ci-dessous, nous voulons afficher un message en fonction de l'action à réaliser ou non pour le réapprovisionnement. Si le produit a déjà été comamndé (i.e. `UnitesCom > 0`), alors on l'indique. Par contre, s'il ne l'est pas mais que le stock est inférieur au niveau de réapprovisionnement, alors on indique qu'il faut commander le produit. Pour les produits qui ne sont plus en stock (et dont le niveau de réapprovisionnement est égal à 0), on indique juste qu'il n'y a plus de produits à disposition. Pour les autres, il n'y a, a priori, rien à faire.
 
 ```sql
-SELECT DATE("now") AS "Aujourd'hui",
-		STRFTIME("%w", "now") as "Jour de la semaine",
-		STRFTIME("%j", "now") as "Jour de l'année",
-		STRFTIME("%W", "now") as "Semaine dans l'année";
-```
-
-Il faut noter que le jour de la semaine a une valeur entre 0 (pour le dimanche) et 6 (pour le samedi). Par contre, le jour de l'année a une valeur entre 1 et 366. Le numéro de semaine dans l'année commence lui aussi à 0 jusqu'à 52 (voire 53).
-
-Nous disposons de deux autres informations très utiles pour les différences de dates :
-
-- le nombre de secondes depuis le 1/1/1970 avec `"%s"`
-- le jour julien (cf [page Wikipedia](https://fr.wikipedia.org/wiki/Jour_julien)) avec 
-	- soit `"%J"` dans la fonction `STRFTIME()`
-	- soit la fontion `%JULIANDAY()`
-
-```sql
-SELECT DATE("now"),
-		STRFTIME("%s", "now") as "Nb secondes depuis 1/1/1970",
-		STRFTIME("%J", "now") as "Jour julien",
-		JULIANDAY("now") as "Jour julien";
-```
-
-Ainsi, il est possible de calculer le nombre de jours entre deux dates de 2 manières. Pour rappel, une journée dure 24 heures de 60 minutes, chacune faisant 60 secondes, ce qui fait qu'une journée dure 86400 secondes (24 $\times$ 60 $\times$ 60).
-
-Dans l'exemple ci-dessous, nous calculons le nombre de jours qu'ont duré les Jeux Olympiques 2016 (du 5 au 21 août).
-
-```sql
-SELECT JULIANDAY("2016-08-21") - JULIANDAY("2016-08-05");
-```
-
-On calcule la même différence en utilisant la fonction `STRFTIME()` et le nombre de secondes depuis le 1/1/1970.
-
-```sql
-SELECT (STRFTIME("%s", "2016-08-21") - STRFTIME("%s", "2016-08-05")) / 86400;
+SELECT Refprod, UnitesStock, UnitesCom, NiveauReap,
+        CASE
+            WHEN UnitesCom > 0 THEN "Déjà commandé"
+            WHEN UnitesStock < NiveauReap THEN "A commander"
+            WHEN UnitesStock == 0 THEN "Plus en stock"
+            ELSE "rien à faire"
+        END AS Informations
+    FROM Produit;
 ```
 
 ## Exercices
 
-1. Afficher le jour de la semaine en lettre pour toutes les dates de commande
-2. Compléter en affichant `"week-end"` pour les samedi et dimanche, et `"semaine"` pour les autres jour
-3. Calculer le nombre de jours entre la date de la commande (`DateCom`) et la date butoir de livraison (`ALivAvant`), pour chaque commande
-4. On souhaite aussi contacter les clients 1 an, 1 mois et 1 semaine après leur commande. Calculer les dates correspondantes pour chaque commande
+1. A partir de la table `Produit`, afficher `"Produit non disponible"` lorsque l'attribut `Indisponible` vaut 1, et `"Produit disponible"` sinon.
+2. Dans la table `DetailCommande`, indiquer les infos suivantes en fonction de la remise
+	- si elle vaut 0 : `"aucune remise"`
+	- si elle vaut entre 1 et 5% (inclus) : `"petite remise"`
+	- si elle vaut entre 6 et 15% (inclus) : `"remise modérée"`
+	- sinon :`"remise importante"`
+3. Indiquer pour les commandes envoyées si elles ont été envoyées en retard (date d'envoi `DateEnv` supérieure (ou égale) à la date butoir `ALivAvant`) ou à temps
+
+

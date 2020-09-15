@@ -1,84 +1,92 @@
-# Fonctions sur chaînes de caractères
+# Fonctions sur les dates
 
-## Concaténation
+Nous disposons en `SQL` (comme dans d'autres langages) de plusieurs formats pour les dates. Soit nous avons uniquement la date (jour, mois et année - stockée sous la forme d'un entier représentant le nombre de jours depuis une date de référence, souvent le 1/1/1970). Il existe aussi un format où la date, l'heure et le fuseau horaire sont stockées (précisemment, le nombre de secondes depuis la même date de référence et le fuseau horaire). 
 
-La première opération que l'on souhaite faire avec des chaînes de caractères est la concaténation : le regroupement des deux chaînes en une seule. Par exemple, la concaténation de `"bon"` et de `"jour"` donne la chaîne `"bonjour"`. L'opérateur dédié en `SQL` est `||`. L'exemple ci-dessous nous permet d'avoir le nom et le prénom dans une seule chaîne.
+Nous allons voir ici quelques fonctions utiles pour les dates : `DATE()` pour générer des dates, `STRFTIME()` pour obtenir des informations à partir d'une date.
+
+Vous trouverez sur [cette page](https://sqlite.org/lang_datefunc.html) plus d'informations sur les fonctions disponibles.
+
+## Génération de dates
+
+En premier lieu, si nous désirons avoir la date du jour (de l'exécution de la requête bien sûr), nous pouvons exécuter cette requête. La date est affichée au format `"YYYY-MM-DD"`.
 
 ```sql
-SELECT NoEmp, Nom || Prenom
-    FROM Employe;
+SELECT DATE("now");
 ```
 
-Avec la requête ci-dessus, les deux chaînes sont collées, i.e. il n'y a pas d'espace entre les deux. Pour cela, il est tout à fait possible de concaténer en une expression plusieurs chaînes pour introduire un espace, comme ci-après.
+La commande `DATE()` peut prendre d'autres paramètres après le premier contenant la date (ou `"now"`), permettant de modifier cette date. La requête suivante permet d'avoir la date de la veille.
 
 ```sql
-SELECT NoEmp, Nom || " " || Prenom
-    FROM Employe;
+SELECT DATE("now", "-1 day");
 ```
 
-## Extraction d'une sous-chaîne
-
-Une commande intéressante sur les chaînes est la commande `SUBSTR(chaine, debut, longueur)` qui permet d'extraire une sous-chaîne d'une chaîne, en partant du caractère précisé dans `debut` et sur une longueur précisé par `longueur`. Dans l'exemple ci-dessous, nous extrayons l'initiale du prénom.
+Il est possible de cumuler plusieurs modificateurs pour, par exemple, obtenir le dernier jour du mois dernier.
 
 ```sql
-SELECT NoEmp, Nom || " " || SUBSTR(Prenom, 1, 1)
-    FROM Employe;
+SELECT DATE("now", "start of month", "-1 day");
 ```
 
-Et on ajoute un `"."` pour indiquer que c'est une initiale. Il n'y a pas de limite sur le nombre de chaînes que l'on peut concaténer en une seule expression.
+La commande `DATE()` accepte aussi en premier paramètre une date au bon format, pour par exemple lui appliquer une modification par la suite. Nous avons ici la date du lendemain de la commande.
 
 ```sql
-SELECT NoEmp, Nom || " " || SUBSTR(Prenom, 1, 1) || "."
-    FROM Employe;
+SELECT DATE(DateCom, "+1 day") 
+    FROM Commande;
 ```
 
-## Majuscule/Minuscule
+## Informations à partir d'une date
 
-Pour pouvoir transformer une chaîne en majuscule (et respectivement en minuscule), nous avons à disposition la commande `UPPER(chaine)` (et resp. `LOWER(chaine)`). Cette commande, comme toutes les autres, peut aussi être utilisé dans un `WHERE`.
+La commande `STRFTIME()` permet elle d'obtenir des informations à partir d'une date. On indique l'information désirée par un caractère précédé d'un `"%"`. Dans l'exemple ci-après, on récupère l'année (`"%Y"`), le mois (`"%m"`) et le jour ("`%d"`) de la date actuelle. Il est aussi possible de les combiner pour écrire la date dans un format plus classique pour nous.
 
 ```sql
-SELECT NoEmp, UPPER(Nom) || " " || SUBSTR(Prenom, 1, 1) || "."
-    FROM Employe;
+SELECT DATE("now") AS "Aujourd'hui",
+		STRFTIME("%Y", "now") AS "Année",
+		STRFTIME("%m", "now") AS "Mois",
+		STRFTIME("%d", "now") AS "Jour",
+		STRFTIME("%d/%m/%Y", "now") AS "Nouveau format";
 ```
 
-La commande `LENGTH(chaine)` permet de renvoyer la longueur de la chaîne (i.e. le nombre de caractères, y compris les espaces).
+Il existe d'autres informations potentiellement intéressantes sur les dates, comme le jour de la semaine (`"%w"`), le jour dans l'année (`"%j"`) ou la semaine dans l'année (`"%W"`).
 
 ```sql
-SELECT NoEmp, Nom, LENGTH(Nom)
-    FROM Employe;
+SELECT DATE("now") AS "Aujourd'hui",
+		STRFTIME("%w", "now") as "Jour de la semaine",
+		STRFTIME("%j", "now") as "Jour de l'année",
+		STRFTIME("%W", "now") as "Semaine dans l'année";
 ```
 
-## Modification d'une sous-chaîne
+Il faut noter que le jour de la semaine a une valeur entre 0 (pour le dimanche) et 6 (pour le samedi). Par contre, le jour de l'année a une valeur entre 1 et 366. Le numéro de semaine dans l'année commence lui aussi à 0 jusqu'à 52 (voire 53).
 
-La commande `REPLACE(chaîne, sc1, sc2)` permet de remplacer la sous-chaîne `sc1` par la sous-chaîne `sc2` dans la chaîne de caractères passée en premier paramètre. Ci-dessous, nous remplaçons donc le terme `"Chef"` par le terme `"Responsable"` dans les titres de fonction des employés.
+Nous disposons de deux autres informations très utiles pour les différences de dates :
+
+- le nombre de secondes depuis le 1/1/1970 avec `"%s"`
+- le jour julien (cf [page Wikipedia](https://fr.wikipedia.org/wiki/Jour_julien)) avec 
+	- soit `"%J"` dans la fonction `STRFTIME()`
+	- soit la fontion `%JULIANDAY()`
 
 ```sql
-SELECT Nom, Prenom, Fonction,
-        REPLACE(Fonction, "Chef", "Responsable")
-    FROM Employe;
+SELECT DATE("now"),
+		STRFTIME("%s", "now") as "Nb secondes depuis 1/1/1970",
+		STRFTIME("%J", "now") as "Jour julien",
+		JULIANDAY("now") as "Jour julien";
 ```
 
-## Recherche d'une sous-chaîne
+Ainsi, il est possible de calculer le nombre de jours entre deux dates de 2 manières. Pour rappel, une journée dure 24 heures de 60 minutes, chacune faisant 60 secondes, ce qui fait qu'une journée dure 86400 secondes (24 * 60 * 60).
 
-Pour rechercher la première apparition d'une sous-chaîne dans une chaîne, nous disposons de la commande `INSTR(chaîne, souschaine)`. Celle-ci recherche donc à quelle position dans la chaîne se trouve la première occurence de la sous-chaîne. Si la sous-chaîne n'est pas présente, la fonction renvoie `0`.
-
-Ci-dessous, nous cherchons la présence du terme `"Ave."` dans l'adresse des employés. 
+Dans l'exemple ci-dessous, nous calculons le nombre de jours qu'ont duré les Jeux Olympiques 2016 (du 5 au 21 août).
 
 ```sql
-SELECT Nom, Adresse,
-        INSTR(Adresse, "Ave.")
-    FROM Employe;
+SELECT JULIANDAY("2016-08-21") - JULIANDAY("2016-08-05");
+```
+
+On calcule la même différence en utilisant la fonction `STRFTIME()` et le nombre de secondes depuis le 1/1/1970.
+
+```sql
+SELECT (STRFTIME("%s", "2016-08-21") - STRFTIME("%s", "2016-08-05")) / 86400;
 ```
 
 ## Exercices
 
-Dans une même requête, sur la table `Client` : 
-
-1. Concaténer les champs `Adresse`, `Ville`, `CodePostal` et `Pays` dans un nouveau champ nommé `Adresse complète`, pour avoir :
-```
-Adresse, CodePostal Ville, Pays
-```
-2. Extraire les deux derniers caractères des codes clients
-3. Mettre en minuscule le nom des sociétés
-4. Remplacer le terme `"marketing"` par `"mercatique"` dans la fonction des contacts
-5. Indiquer la présence du terme `"Chef"` dans la fonction du contact
+1. Afficher le jour de la semaine en lettre pour toutes les dates de commande
+2. Compléter en affichant `"week-end"` pour les samedi et dimanche, et `"semaine"` pour les autres jour
+3. Calculer le nombre de jours entre la date de la commande (`DateCom`) et la date butoir de livraison (`ALivAvant`), pour chaque commande
+4. On souhaite aussi contacter les clients 1 an, 1 mois et 1 semaine après leur commande. Calculer les dates correspondantes pour chaque commande
