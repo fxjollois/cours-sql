@@ -161,7 +161,7 @@ button.active {
 }
 
 #information {
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 table {
