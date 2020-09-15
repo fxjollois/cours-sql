@@ -56,3 +56,4 @@ SELECT MIN(PrixUnit), MAX(PrixUnit)
 1. Calculer le coût moyen du port pour les commandes du client dont le code est `"QUICK"` (attribut `CodeCli`) 
 2. Calculer le coût du port minimum et maximum des commandes
 3. Pour chaque messager (par leur numéro : `1`, `2` et `3`), donner le montant total des frais de port leur correspondant
+    - il faut faire 3 requêtes différentes donc

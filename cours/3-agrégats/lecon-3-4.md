@@ -11,6 +11,7 @@ SELECT Pays, COUNT(*)
 La première idée serait de faire une restriction sur le `COUNT(*)` dans la clause `WHERE`, comme ci-dessous. Comme vous pourrez le voir, cette requête ne fonctionne pas, car le `COUNT(*)` est mal placé.
 
 ```sql
+# /!\ requête renvoyant une erreur
 SELECT Pays, COUNT(*) 
     FROM Client
     WHERE COUNT(*) >= 10
@@ -40,6 +41,7 @@ SELECT Pays, COUNT(*) AS Nb
 Nous avons maintenant vu tous les clauses existantes dans une requête `SQL` de type `SELECT`. Il est important de se souvenir de l'ordre d'apparition de celles-ci, tel que présenté ci-dessous. Si cet ordre n'est pas respecté, le moteur SGBD ne pourra pas traiter la requête et renverra une erreur.
 
 ```sql
+# requête à ne pas exécuter
 SELECT attributs, calculs, agrégats
 	FROM tables
 	WHERE conditions
