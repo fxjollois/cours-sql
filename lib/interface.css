@@ -77,6 +77,12 @@ button.active {
     background-color: darkslategrey;
 }
 
+/* bouton class bd : dans requêtage direct */
+.bd {
+    margin: 10px;
+    text-align: center;
+}
+
 #choixAccueil button {
     width: 300px;
 }
