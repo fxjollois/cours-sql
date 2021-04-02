@@ -2,9 +2,15 @@
 
 ## Principe
 
-Une **jointure interne** (`INNER JOIN`) est faite pour pallier aux problèmes de la *jointure naturelle*. Ici, nous allons préciser sur quel(s) attribut(s) nous allons chercher l'égalité. Par contre, si un attribut est présent dans les deux tables, il va falloir préciser auquel on fait référence en indiquant la table d'origine avant (avec le formalisme `table.attribut`).
+Une **jointure interne** (`INNER JOIN`) est faite pour pallier aux problèmes de la *jointure naturelle*. Ici, nous allons préciser sur quel(s) attribut(s) nous allons chercher l'égalité. Si les attributs ont le même nom entre les 2 tables, on peut utiliser le mot-clé `USING`. En reprenant le premier exemple précédent, voici la requête reliant les produits avec les catégories, réalisée avec une jointure interne.
 
-En reprenant le premier exemple précédent, voici la requête reliant les produits avec les catégories, réalisée avec une jointure interne.
+```sql
+SELECT *
+	FROM Produit INNER JOIN Categorie
+		USING (CodeCateg);
+```
+
+Par contre, on peut aussi préciser explicitement quel attribut de chaque table on veut utiliser. Ceci est utile quand les attributs n'ont pas le même nom (ce qui arrive). Attention, si un attribut est présent dans les deux tables, il va falloir préciser auquel on fait référence en indiquant la table d'origine avant (avec le formalisme `table.attribut`). Voici donc une autre façon de réaliser une jointure interne.
 
 ```sql
 SELECT *
@@ -19,7 +25,7 @@ Si nous souhaitons refaire la requête récupérant les produits (nom du produit
 ```sql
 SELECT NomProd, Societe
 	FROM Produit INNER JOIN Fournisseur
-		ON Produit.NoFour = Fournisseur.NoFour
+		USING (NoFour)
 	WHERE Pays = "France";
 ```
 
@@ -28,7 +34,7 @@ Si on souhaite maintenant le nom de catégorie et le nombre de produits associé
 ```sql
 SELECT NomCateg, COUNT(*) AS "Nb Produits"
 	FROM Produit INNER JOIN Categorie
-		ON Produit.CodeCateg = Categorie.CodeCateg
+		USING (CodeCateg)
 	GROUP BY NomCateg
 	ORDER BY 2 DESC;
 ```
@@ -63,10 +69,9 @@ De même que pour une jointure naturelle, il est possible d'enchaîner les joint
 
 ```sql
 SELECT *
-    FROM (Produit P INNER JOIN Categorie C
-        ON P.CodeCateg = C.CodeCateg)
-            INNER JOIN Fournisseur F
-                ON P.NoFour = F.NoFour;
+    FROM Produit 
+    	INNER JOIN Categorie USING (CodeCateg)
+        INNER JOIN Fournisseur USING (NoFour);
 ```
 
 ## Lignes manquantes
@@ -91,3 +96,4 @@ SELECT COUNT(DISTINCT CodeCli)
 1. Récupérer les informations des fournisseurs pour chaque produit, avec une jointure interne
 2. Afficher les informations des commandes du client `"Lazy K Kountry Store"`, avec une jointure interne
 3. Afficher le nombre de commande pour chaque messager (en indiquant son nom), avec une jointure interne
+4. Afficher pour chaque employé le nom et le prénom de son responsable
