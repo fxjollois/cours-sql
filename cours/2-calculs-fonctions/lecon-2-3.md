@@ -86,7 +86,7 @@ SELECT (STRFTIME("%s", "2016-08-21") - STRFTIME("%s", "2016-08-05")) / 86400;
 
 ## Exercices
 
-1. Afficher le jour de la semaine en lettre pour toutes les dates de commande
-2. Compléter en affichant `"week-end"` pour les samedi et dimanche, et `"semaine"` pour les autres jour
+1. Calculer pour chaque commande le jour de la semaine, le numéro de semaine dans l'année et le mois
+2. Lister les commandes ayant eu lieu un dimanche
 3. Calculer le nombre de jours entre la date de la commande (`DateCom`) et la date butoir de livraison (`ALivAvant`), pour chaque commande
 4. On souhaite aussi contacter les clients 1 an, 1 mois et 1 semaine après leur commande. Calculer les dates correspondantes pour chaque commande
