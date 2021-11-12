@@ -12,7 +12,7 @@ Une jointure se fait entre deux tables. Nous parlerons de **jointure externe gau
 
 **ATTENTION** Dans l'outil utilisé ici, seule la jointure externe gauche est implémenter. Pour obtenir la jointure externe droite, il suffit d'inverser les tables. Pour la jointure complète, nous devrons utiliser en plus un opérateur que nous verrons plus tard.
 
-Dans notre cas, si nous souhaitons avec les clients avec les détails de commande, tout en gardant la table de résultat les clients sans commande, nous devons donc réaliser une jointure externe gauche entre `Client` (à gauche) et `Commande` (à droite).
+Dans notre cas, si nous souhaitons tous les clients avec les détails de commande, tout en gardant la table de résultat les clients sans commande, nous devons donc réaliser une jointure externe gauche entre `Client` (à gauche) et `Commande` (à droite).
 
 ```sql
 SELECT *
