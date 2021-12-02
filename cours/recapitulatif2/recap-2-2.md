@@ -1,6 +1,6 @@
 # Simple
 
-2. Quels sont les gymnases de ”Villetaneuse” ou de ”Sarcelles” qui ont une surface de plus de 400 m2 ?
+2. Quels sont les gymnases de "VILLETANEUSE" ou de "SARCELLES" qui ont une surface de plus de 400 m2 ?
 3. Quels sont les sportifs (nom et prénom) qui pratiquent (*i.e.* jouent) du hand ball ?
 4. Dans quels gymnases et quels jours y a-t'il des séances de hand ball ?
 5. Dans quels gymnases peut-on jouer au hockey le mercredi après 15H ?
