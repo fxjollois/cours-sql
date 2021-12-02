@@ -1,7 +1,7 @@
 # Complexe
 
-21. Pour chaque gymnase de Stains donner par jour d’ouverture les horaires des premières et dernières séances
-17. Quels entraîneurs n’entraînent que du hand ball et/ou du basket ball, mais aucun autre sporrt ?
+21. Pour chaque gymnase de "STAINS" donner par jour d’ouverture les horaires des premières et dernières séances
+17. Quels entraîneurs n’entraînent que du hand ball et/ou du basket ball, mais aucun autre sport ?
 20. Dans une même requête, donner pour chaque sportif (nom et prénom)
 	- le nombre de sports qu'il joue
 	- le nombre de sports qu'il arbitre
