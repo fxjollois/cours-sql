@@ -9,7 +9,7 @@
 ## Restriction
 
 1. Lister les sportifs (nom et prénom) agés strictement de plus de 30 ans
-1. Lister les gymnases de la ville de "Stains"
+1. Lister les gymnases de la ville de "STAINS"
 1. Lister les sportifs n'ayant pas de conseiller
 
 ## Projection
