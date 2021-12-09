@@ -12,7 +12,13 @@ Une jointure se fait entre deux tables. Nous parlerons de **jointure externe gau
 
 **ATTENTION** Dans l'outil utilisé ici, seule la jointure externe gauche est implémenter. Pour obtenir la jointure externe droite, il suffit d'inverser les tables. Pour la jointure complète, nous devrons utiliser en plus un opérateur que nous verrons plus tard.
 
-Dans notre cas, si nous souhaitons tous les clients avec les détails de commande, tout en gardant la table de résultat les clients sans commande, nous devons donc réaliser une jointure externe gauche entre `Client` (à gauche) et `Commande` (à droite).
+Dans notre cas, si nous souhaitons tous les clients avec les détails de commande, tout en gardant la table de résultat les clients sans commande, nous devons donc réaliser une jointure externe gauche entre `Client` (à gauche) et `Commande` (à droite). On peut utiliser le formalisme `USING()` ou `ON`, comme avec `INNER JOIN`.
+
+```sql
+SELECT *
+	FROM Client LEFT OUTER JOIN Commande
+		USING (CodeCli);
+```
 
 ```sql
 SELECT *
@@ -34,10 +40,10 @@ Par exemple, si nous souhaitons connaître le nombre de commandes par client, il
 
 
 ```sql
-SELECT Cl.CodeCli, COUNT(*)
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli
-	GROUP BY Cl.CodeCli
+SELECT CodeCli, COUNT(*)
+	FROM Client LEFT OUTER JOIN Commande
+		USING (CodeCli)
+	GROUP BY CodeCli
 	ORDER BY 2;
 ```
 
@@ -46,10 +52,10 @@ Si l'on veut avoir le nombre de commandes, et donc 0 pour ceux n'ayant aucune co
 Ainsi, si nous comptons le nombre de valeurs non nulles de `NoCom` (avec `COUNT(NoCom)`), comme fait dans la requête qui suit, nous avons bien un `0` qui apparaît pour les clients n'ayant aucune commande associée.
 
 ```sql
-SELECT Cl.CodeCli, COUNT(NoCom)
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli
-	GROUP BY Cl.CodeCli
+SELECT CodeCli, COUNT(NoCom)
+	FROM Client LEFT OUTER JOIN Commande
+		USING (CodeCli)
+	GROUP BY CodeCli
 	ORDER BY 2;
 ```
 
@@ -58,10 +64,10 @@ Ainsi, ce processus, combiné avec une condition sur l'agrégat (avec `HAVING`),
 Par exemple, si nous souhaitons connaître le nom des sociétés clientes pour lesquelles nous n'avons pas de commandes associées, nous pourrions faire la requête suivante. Ici, `Cl.*` permet de récupérer toutes les informations de la table `Client`.
 
 ```sql
-SELECT Cl.*
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli
-	GROUP BY Cl.CodeCli
+SELECT Client.*
+	FROM Client LEFT OUTER JOIN Commande
+		USING (CodeCli)
+	GROUP BY CodeCli
 	HAVING COUNT(NoCom) == 0;
 ```
 
