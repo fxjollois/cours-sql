@@ -76,10 +76,10 @@ Maintenant, si on ajoute un autre calcul d'agrégat (somme, moyenne, ...), le r�
 Par exemple, si nous calculons les frais de port moyens pour chaque client, nous n'avons pas de résultat pour les clients n'ayant aucune commande.
 
 ```sql
-SELECT Cl.CodeCli, COUNT(NoCom), AVG(Port)
-	FROM Client Cl LEFT OUTER JOIN Commande Co
-		ON Cl.CodeCli = Co.CodeCli
-	GROUP BY Cl.CodeCli
+SELECT CodeCli, COUNT(NoCom), AVG(Port)
+	FROM Client LEFT OUTER JOIN Commande
+		USING (CodeCli)
+	GROUP BY CodeCli
 	ORDER BY 2;
 ```
 
